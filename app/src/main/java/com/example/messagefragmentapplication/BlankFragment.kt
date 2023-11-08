@@ -9,26 +9,31 @@ import android.widget.EditText
 import androidx.fragment.app.Fragment
 
 class BlankFragment : Fragment() {
+
     private lateinit var editText: EditText
-    private var listener: OnTextChangeListener? = null
+    private lateinit var saveButton: Button
 
-    interface OnTextChangeListener {
-        fun onTextChange(text: String)
-    }
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View? {
         val view = inflater.inflate(R.layout.fragment_blank, container, false)
         editText = view.findViewById(R.id.editTextMessage)
-        val changeButton: Button = view.findViewById(R.id.buttonChange)
-        changeButton.setOnClickListener {
-            listener?.onTextChange(editText.text.toString())
-            activity?.supportFragmentManager?.popBackStack()
+        saveButton = view.findViewById(R.id.buttonChange)
+        editText.setText(arguments?.getString("text"))
+        saveButton.setOnClickListener {
+            (activity as MainActivity).updateText(editText.text.toString())
+            parentFragmentManager.popBackStack()
         }
         return view
     }
 
-    fun setOnTextChangeListener(listener: OnTextChangeListener) {
-        this.listener = listener
+    companion object {
+        fun newInstance(text: String): BlankFragment {
+            val fragment = BlankFragment()
+            val bundle = Bundle()
+            bundle.putString("text", text)
+            fragment.arguments = bundle
+            return fragment
+        }
     }
 }
-
