@@ -19,6 +19,7 @@ class BlankFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_blank, container, false)
         editText = view.findViewById(R.id.editTextMessage)
         saveButton = view.findViewById(R.id.buttonChange)
+
         editText.setText(arguments?.getString("text"))
         saveButton.setOnClickListener {
             (activity as MainActivity).updateText(editText.text.toString())

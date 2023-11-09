@@ -15,14 +15,24 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         textView = findViewById(R.id.textView)
         nextButton = findViewById(R.id.buttonNext)
+        if (savedInstanceState != null) {
+            textView.text = savedInstanceState.getString("text")
+        }
         nextButton.setOnClickListener {
             val fragment = BlankFragment.newInstance(textView.text.toString())
-            supportFragmentManager.beginTransaction()
+            supportFragmentManager
+                .beginTransaction()
                 .replace(R.id.fragmentContainerView, fragment)
                 .addToBackStack(null)
                 .commit()
         }
     }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString("text", textView.text.toString())
+    }
+
     fun updateText(newText: String) {
         textView.text = newText
     }

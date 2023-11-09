@@ -12,27 +12,25 @@
         style="@style/Widget.Material3.AutoCompleteTextView.FilledBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/hint"
         android:inputType="text"
-        android:minHeight="48dp"
         android:textColorHint="#8D6E63"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.25" />
 
     <Button
         android:id="@+id/buttonChange"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:width="200sp"
+        android:layout_marginTop="90dp"
+        android:width="250sp"
         android:text="@string/change"
         app:layout_constraintEnd_toEndOf="@+id/editTextMessage"
-        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="@+id/editTextMessage"
         app:layout_constraintTop_toBottomOf="@+id/editTextMessage" />
 
